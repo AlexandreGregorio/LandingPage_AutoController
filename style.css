@@ -1,0 +1,805 @@
+/* ==========================================================================
+   1. VARIÁVEIS E RESET GLOBAL
+   ========================================================================== */
+:root {
+  --primary: #0052cc;
+  --secondary: #00d26a;
+  --dark: #0a192f;
+  --light-bg: #f8fafc;
+  --text: #333333;
+  --border-color: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f1f5f9;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO (HEADER) E MENU
+   ========================================================================== */
+header {
+  background-color: var(--light-bg);
+  color: var(--dark);
+  padding: 10px 5%;
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 100%;
+}
+
+.logo-img {
+  height: 130px;
+  width: auto;
+  object-fit: contain;
+  transform: scale(1.2);
+  transform-origin: left center;
+  margin-top: 5px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+nav a.nav-link {
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+nav a.nav-link:hover {
+  color: var(--primary);
+}
+
+/* Dropdown Interativo de Portais */
+.dropdown-portal {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-portal-dropdown {
+  background: linear-gradient(135deg, var(--primary), #003d99);
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.25);
+  transition: all 0.25s ease;
+}
+
+/* Imagem dentro do Botão Principal do Portal */
+.btn-portal-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Deixa a imagem branca para contrastar com o fundo azul */
+}
+
+.btn-portal-dropdown:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 82, 204, 0.35);
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-portal.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 290px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1050;
+}
+
+.dropdown-portal:hover .dropdown-menu,
+.dropdown-portal.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  color: var(--dark) !important;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f5f9;
+}
+
+.item-icon {
+  width: 40px;
+  height: 40px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+/* Imagens das Logos dos Portais */
+.dropdown-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-text strong {
+  font-size: 0.95rem;
+  color: var(--dark);
+}
+
+.item-text small {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+/* Botão Hamburguer (Mobile) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--dark);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero {
+  background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88)), 
+              url('https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=1400&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 5% 80px 5%;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  background-color: rgba(0, 210, 106, 0.2);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #e2e8f0;
+  margin-bottom: 35px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+  background-color: var(--secondary);
+  color: #000;
+  font-weight: bold;
+  padding: 14px 32px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.btn-hero-secondary {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  font-weight: bold;
+  padding: 14px 32px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btn-hero-primary:hover { transform: translateY(-2px); }
+.btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* ==========================================================================
+   4. BARRA DE MÉTRICAS
+   ========================================================================== */
+.metrics-bar {
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+  padding: 30px 5%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.metrics-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.metric-label {
+  font-size: 0.95rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   5. ABAS INTERATIVAS (TABS)
+   ========================================================================== */
+.container {
+  padding: 60px 5%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  color: var(--dark);
+}
+
+.section-title p {
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+.tabs-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+  border: 1px solid var(--border-color);
+}
+
+.tabs-header {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #edf2f7;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--primary);
+  background-color: #f1f5f9;
+}
+
+.tab-btn.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.panel-text h3 {
+  font-size: 1.6rem;
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.panel-text p {
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.panel-text ul { list-style: none; }
+
+.panel-text li {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.panel-media img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   6. VÍDEO INSTITUCIONAL
+   ========================================================================== */
+.video-container {
+  max-width: 850px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  background: #000;
+}
+
+.video-container iframe {
+  border: none;
+  display: block;
+}
+
+/* ==========================================================================
+   7. CARDS DE PLANOS
+   ========================================================================== */
+.plans-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 20px; 
+}
+
+.plan-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  border-top: 5px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+
+.plan-card:hover { transform: translateY(-5px); }
+
+.plan-card.featured {
+  border-top-color: var(--secondary);
+  transform: scale(1.02);
+}
+
+.card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.plan-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--dark);
+  margin: 10px 0;
+}
+
+.plan-price span { font-size: 0.85rem; }
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.plan-features li {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.btn-plan {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.btn-plan:hover { opacity: 0.9; }
+.btn-plan.featured { background-color: var(--secondary); color: #000; }
+
+/* ==========================================================================
+   8. SIMULADOR DE COTAÇÃO
+   ========================================================================== */
+.simulator-box {
+  background: white;
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group select, 
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.result-box {
+  background: #eef9f2;
+  border: 1px solid var(--secondary);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.result-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #008a44;
+}
+
+.btn-whatsapp-sim {
+  background-color: #25d366;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   9. PERGUNTAS FREQUENTES (FAQ)
+   ========================================================================== */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: white;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-size: 1.4rem;
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.faq-answer p {
+  padding: 15px 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.faq-item.active .faq-answer { max-height: 200px; }
+.faq-item.active .faq-icon { transform: rotate(45deg); }
+
+/* ==========================================================================
+   10. RODAPÉ (FOOTER)
+   ========================================================================== */
+footer {
+  background-color: var(--light-bg);
+  color: var(--dark);
+  padding: 40px 5% 20px 5%;
+  margin-top: 50px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 30px; 
+}
+
+.footer-info h3 {
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.footer-info p { color: #475569; }
+
+.contact-list { list-style: none; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.contact-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 15px;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   11. WHATSAPP FLUTUANTE
+   ========================================================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float:hover { transform: scale(1.08); }
+
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   12. RESPONSIVIDADE (MOBILE E TABLETS)
+   ========================================================================== */
+@media (max-width: 991px) {
+  header {
+    height: 70px;
+    padding: 0 5%;
+  }
+
+  .logo-img {
+    height: 85px;
+    transform: none;
+  }
+
+  .menu-toggle { display: flex; }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--light-bg);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 5%;
+    gap: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  nav.active {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  nav a.nav-link {
+    font-size: 1rem;
+    padding: 8px 0;
+    border-bottom: 1px solid #edf2f7;
+  }
+
+  .dropdown-portal {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .btn-portal-dropdown {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+    margin-top: 8px;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .dropdown-portal.active .dropdown-menu {
+    display: block;
+  }
+
+  .hero h1 { font-size: 2rem; }
+
+  .tab-panel { grid-template-columns: 1fr; }
+
+  .plan-card.featured { transform: none; }
+}

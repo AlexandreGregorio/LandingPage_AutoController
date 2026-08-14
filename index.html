@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Controller System | Rastreamento e Gestão Completa de Frotas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header / Cabeçalho Responsivo -->
+  <header>
+    <a href="#" class="logo-container">
+      <img src="https://lh3.googleusercontent.com/d/1VXCvPWjbmg7IDjNxILpCiKbAoAwPCJeK" alt="Auto Controller System" class="logo-img">
+    </a>
+
+    <!-- Botão Hamburguer (Mobile) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navegação Dinâmica -->
+    <nav id="navMenu">
+      <a href="#solucoes" class="nav-link">Soluções</a>
+      <a href="#beneficios" class="nav-link">Recursos</a>
+      <a href="#planos" class="nav-link">Planos</a>
+      <a href="#simulador" class="nav-link">Cotação</a>
+      <a href="#faq" class="nav-link">Dúvidas</a>
+      
+      <!-- Botão Dropdown Único e Interativo para Portais -->
+      <div class="dropdown-portal">
+        <button class="btn-portal-dropdown" id="portalBtn">
+          <!-- Ícone do Botão Atualizado -->
+          <img src="https://lh3.googleusercontent.com/d/1rVuw6pvzYiRpe9mK5FyxdMdNEk088yaX" alt="Portais" class="btn-portal-img">
+          <span>Entrar nos Portais</span>
+          <span class="dropdown-arrow">▼</span>
+        </button>
+
+        <div class="dropdown-menu" id="portalDropdownMenu">
+          <a href="https://hosting.wialon.us/?lang=br" target="_blank" class="dropdown-item wialon-item">
+            <div class="item-icon">
+              <img src="https://lh3.googleusercontent.com/d/1qDq8vo3Bqt7c-UMriHu5PtHRJSWaXUTu" alt="Wialon Logo" class="dropdown-item-img">
+            </div>
+            <div class="item-text">
+              <strong>Wialon Hosting</strong>
+              <small>Gestão avançada e rastreamento global</small>
+            </div>
+          </a>
+
+          <a href="https://autocontrollersystem.com.br/jsp/index.html" target="_blank" class="dropdown-item trakzee-item">
+            <div class="item-icon">
+              <img src="https://lh3.googleusercontent.com/d/1KCuSY1KV-9Hz2FZF1ih9Ipzyfl_jOQ2r" alt="Trakzee Logo" class="dropdown-item-img">
+            </div>
+            <div class="item-text">
+              <strong>Trakzee Platform</strong>
+              <small>Telemetria e controle operacional</small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Seção Principal (Hero) -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">TECNOLOGIA EM MONITORAMENTO E TELEMETRIA</span>
+      <h1>Monitore sua frota e veículos em tempo real com segurança e eficiência</h1>
+      <p>Reduza custos com combustível, evite manutenções corretivas e tenha visibilidade total da sua operação 24 horas por dia.</p>
+      <div class="hero-actions">
+        <a href="#simulador" class="btn-hero-primary">Agendar Demonstração / Cotação</a>
+        <a href="https://wa.me/552134963942" target="_blank" class="btn-hero-secondary">Falar com Consultor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra de Métricas de Alto Impacto -->
+  <section class="metrics-bar">
+    <div class="metrics-grid">
+      <div class="metric-item">
+        <span class="metric-number">25%</span>
+        <span class="metric-label">Economia de Combustível</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-number">-40%</span>
+        <span class="metric-label">Custos com Manutenção</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-number">+20%</span>
+        <span class="metric-label">Produtividade da Frota</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-number">24h</span>
+        <span class="metric-label">Suporte e Localização ao Vivo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Recursos Interativos com Abas (Tabs) -->
+  <section class="container" id="solucoes">
+    <div class="section-title">
+      <h2>Soluções Inteligentes para sua Operação</h2>
+      <p>Gerencie veículos e motoristas em uma plataforma moderna e intuitiva</p>
+    </div>
+
+    <div class="tabs-wrapper">
+      <!-- Botões das Abas -->
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="openTab(event, 'tab-monitoramento')">📍 Monitoramento ao Vivo</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-cercas')">🗺️ Cercas Virtuais</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-km')">📊 Controle de KM & Manutenção</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-bloqueio')">🔒 Bloqueio & Segurança</button>
+      </div>
+
+      <!-- Conteúdos das Abas -->
+      <div class="tab-content active" id="tab-monitoramento">
+        <div class="tab-panel">
+          <div class="panel-text">
+            <h3>Visualização Precisa e Histórico de Rotas</h3>
+            <p>Acompanhe em tempo real a posição de cada veículo da sua frota. Identifique paradas não autorizadas, velocidade praticada e rotas percorridas com histórico detalhado.</p>
+            <ul>
+              <li>✓ Posições atualizadas via GPS/GPRS</li>
+              <li>✓ Alertas imediatos de excesso de velocidade</li>
+              <li>✓ Relatórios exportáveis em PDF e Excel</li>
+            </ul>
+          </div>
+          <div class="panel-media">
+            <img src="https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?auto=format&fit=crop&w=800&q=80" alt="Monitoramento de Frota">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-cercas">
+        <div class="tab-panel">
+          <div class="panel-text">
+            <h3>Delimitação de Áreas Seguras e Rotas Permitidas</h3>
+            <p>Crie perímetros virtuais para garagens, áreas de entrega ou regiões de risco. Seja notificado no celular no momento em que um veículo entrar ou sair dessa zona.</p>
+            <ul>
+              <li>✓ Notificações instantâneas via e-mail e app</li>
+              <li>✓ Controle exato de horários de chegada e saída</li>
+              <li>✓ Proteção acrescida para cargas e condutores</li>
+            </ul>
+          </div>
+          <div class="panel-media">
+            <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" alt="Cercas Virtuais">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-km">
+        <div class="tab-panel">
+          <div class="panel-text">
+            <h3>Gestão Inteligente de Hodômetro e Revisões</h3>
+            <p>Acompanhe a quilometragem exata percorrida. Programe alertas para trocas de óleo, pneus e revisões preventivas, evitando quebras inesperadas no percurso.</p>
+            <ul>
+              <li>✓ Controle de despesas e uso do combustível</li>
+              <li>✓ Redução expressiva no desgaste de componentes</li>
+              <li>✓ Alertas por data ou quilometragem atingida</li>
+            </ul>
+          </div>
+          <div class="panel-media">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80" alt="Controle de Manutenção">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-bloqueio">
+        <div class="tab-panel">
+          <div class="panel-text">
+            <h3>Corte de Ignição e Resposta Rápida a Emergências</h3>
+            <p>Em situações suspeitas ou furtos, acione o bloqueio remoto de maneira segura diretamente pela Central ou Aplicativo móvel.</p>
+            <ul>
+              <li>✓ Ação rápida em casos de roubo e furto</li>
+              <li>✓ Equipe com suporte técnico dedicado 24/7</li>
+              <li>✓ Integração com as melhores plataformas globais</li>
+            </ul>
+          </div>
+          <div class="panel-media">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" alt="Bloqueio de Segurança">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Vídeo Explicativo -->
+  <section class="container" id="institucional">
+    <div class="section-title">
+      <h2>Veja Nossa Solução em Ação</h2>
+      <p>Assista ao vídeo e entenda por que a Auto Controller System é a melhor parceira da sua frota</p>
+    </div>
+    <div class="video-container">
+      <iframe 
+        src="https://drive.google.com/file/d/1n__Xt7FzTpme5JT-E7z5dDP9tZEbCbM9/preview" 
+        width="100%" 
+        height="450" 
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Seção de Planos -->
+  <div class="container" id="planos">
+    <div class="section-title">
+      <h2>Nossos Planos</h2>
+      <p>Escolha o pacote ideal para atender seu veículo particular ou frota comercial</p>
+    </div>
+    <div class="plans-grid">
+      
+      <div class="plan-card">
+        <div>
+          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80" alt="Moto" class="card-img">
+          <h3>Plano Moto</h3>
+          <div class="plan-price">R$ 49,90 <span>/mês</span></div>
+          <ul class="plan-features">
+            <li>✓ Rastreamento 24h via Web/App</li>
+            <li>✓ Bloqueio e Desbloqueio Remoto</li>
+            <li>✓ Histórico de Percursos</li>
+            <li>✓ Instalação Discreta</li>
+          </ul>
+        </div>
+        <a href="#simulador" class="btn-plan">Simular este Plano</a>
+      </div>
+
+      <div class="plan-card featured">
+        <div>
+          <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" alt="Carro" class="card-img">
+          <h3>Plano Carro Passeio</h3>
+          <div class="plan-price">R$ 59,90 <span>/mês</span></div>
+          <ul class="plan-features">
+            <li>✓ Rastreamento 24h em Tempo Real</li>
+            <li>✓ Bloqueio Remoto de Segurança</li>
+            <li>✓ Cercas Virtuais e Alertas no App</li>
+            <li>✓ Relatórios de Deslocamento</li>
+          </ul>
+        </div>
+        <a href="#simulador" class="btn-plan featured">Simular este Plano</a>
+      </div>
+
+      <div class="plan-card">
+        <div>
+          <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80" alt="Van" class="card-img">
+          <h3>Plano Vans / Utilitários</h3>
+          <div class="plan-price">R$ 69,90 <span>/mês</span></div>
+          <ul class="plan-features">
+            <li>✓ Monitoramento em Tempo Real</li>
+            <li>✓ Controle de Paradas e Rotas</li>
+            <li>✓ Alerta de Ignição Ligada/Desligada</li>
+            <li>✓ Suporte Técnico Especializado</li>
+          </ul>
+        </div>
+        <a href="#simulador" class="btn-plan">Simular este Plano</a>
+      </div>
+
+      <div class="plan-card">
+        <div>
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80" alt="Frota" class="card-img">
+          <h3>Plano Frota & Pesados</h3>
+          <div class="plan-price">R$ 79,90 <span>/veículo/mês</span></div>
+          <ul class="plan-features">
+            <li>✓ Gestão Completa de Frota</li>
+            <li>✓ Controle de Excesso de Velocidade</li>
+            <li>✓ Identificação de Condutores</li>
+            <li>✓ Atendimento Prioritário 24h</li>
+          </ul>
+        </div>
+        <a href="#simulador" class="btn-plan">Simular para Frota</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Simulador / Cotação Rápida -->
+  <div class="container" id="simulador">
+    <div class="section-title">
+      <h2>Simule sua Cotação Personalizada</h2>
+      <p>Calcule os valores para sua frota e receba um orçamento direto no WhatsApp</p>
+    </div>
+    <div class="simulator-box">
+      <div class="form-group">
+        <label for="tipo">Tipo de Veículo:</label>
+        <select id="tipo" onchange="calcularValores()">
+          <option value="49.90">Moto</option>
+          <option value="59.90" selected>Carro / Passeio</option>
+          <option value="69.90">Van / Utilitário</option>
+          <option value="79.90">Caminhão / Frota</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="qtd">Quantidade de Veículos:</label>
+        <input type="number" id="qtd" value="1" min="1" max="100" onchange="calcularValores()" onkeyup="calcularValores()">
+      </div>
+
+      <div class="form-group">
+        <label>Opcionais Inclusos:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="bloqueio" checked disabled> Bloqueio Remoto (Incluso)</label>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <p>Estimativa de Mensalidade:</p>
+        <div class="result-price" id="totalDisplay">R$ 59,90/mês</div>
+        <br>
+        <button onclick="enviarWhatsapp()" class="btn-plan btn-whatsapp-sim">
+          📱 Receber Proposta no WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção Perguntas Frequentes (FAQ Acordeão) -->
+  <section class="container" id="faq">
+    <div class="section-title">
+      <h2>Perguntas Frequentes</h2>
+      <p>Tire suas dúvidas sobre o rastreamento e monitoramento veicular</p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Como funciona o sistema de rastreamento veicular?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Instalamos um rastreador discreto em seu veículo com sinal GPS/GPRS. Ele envia continuamente coordenadas de localização, velocidade e status para nossos servidores. Você acessa essas informações ao vivo pelo celular ou computador.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Qual a diferença entre Rastreamento e Monitoramento de Frota?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>O rastreamento indica onde o veículo está e por onde passou. O monitoramento de frota vai além: gera dados operacionais como velocidades máximas atingidas, paradas indevidas, cercas virtuais e alertas de manutenção preventiva.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>O bloqueio do veículo pode ser acionado de qualquer lugar?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Sim. O comando de bloqueio pode ser ativado a qualquer hora do dia ou da noite através do nosso aplicativo ou via atendimento da central de emergência.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Consigo gerenciar vários veículos em uma mesma conta?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Com certeza. Nossos portais para gestão (Wialon e Trakzee) permitem agrupar centenas de veículos no mesmo mapa, facilitando a gestão por frota, departamento ou rotas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé (Footer) -->
+  <footer id="contato">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Auto Controller System</h3>
+        <p>Sistemas avançados de rastreamento veicular, telemetria e gestão estratégica de frotas no Rio de Janeiro.</p>
+      </div>
+      <div class="footer-info">
+        <h3>Atendimento e Suporte</h3>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <img src="https://lh3.googleusercontent.com/d/1X2QIs1vKvkg5Ne01zj_izW35xqJl0KPF" alt="Endereço" class="contact-icon">
+            <span>Av. Guignard, 770 - Recreio dos Bandeirantes, Rio de Janeiro/RJ, 22790-200</span>
+          </li>
+          <li class="contact-item">
+            <img src="https://lh3.googleusercontent.com/d/12jvCvevT353h-2MK9444ucKBA7ae6_Bq" alt="Telefone" class="contact-icon">
+            <span>(21) 3496-3942</span>
+          </li>
+          <li class="contact-item">
+            <img src="https://lh3.googleusercontent.com/d/1yTmZe5u_mVxQxwEt-P1sPPTurPZY7-tJ" alt="E-mail" class="contact-icon">
+            <span>suporte@autocontrollersystem.com.br</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      © Auto Controller System - Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Botão Flutuante do WhatsApp -->
+  <a href="https://wa.me/552134963942?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20rastreamento%20veicular." class="whatsapp-float" target="_blank" title="Fale conosco pelo WhatsApp">
+    <img src="https://lh3.googleusercontent.com/d/12jvCvevT353h-2MK9444ucKBA7ae6_Bq" alt="WhatsApp">
+  </a>
+
+  <!-- Script JS Externo -->
+  <script src="script.js"></script>
+
+</body>
+</html>
